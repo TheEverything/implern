@@ -1,11 +1,11 @@
 import AppBar from "@/components/AppBar";
-import ListCard from "@/components/ListCard";
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
+    <div className="w-[400px] h-[728px] ">
       {children}
-      <AppBar className="flex just h-[450px] right-0 left-0 bottom-0 justify-center items-end " />
+      
+      <AppBar className="fixed right-0 left-0 bottom-0" />
     </div>
   );
 }

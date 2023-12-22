@@ -2,16 +2,32 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
-  documents: defineTable({
+  List: defineTable({
     title: v.string(),
-    userId: v.string(),
-    isArchived: v.boolean(),
-    parentDocument: v.optional(v.id("documents")),
-    content: v.optional(v.string()),
-    coverImage: v.optional(v.string()),
-    icon: v.optional(v.string()),
-    isPublished: v.boolean()
+    description: v.string(),
+    slug: v.string(),
+    ownerName: v.string(),
+    ownerImageUrl: v.string(),
+    upCount: v.number(),
+    commentCount: v.number(),
+    isUserAdded: v.boolean(),
+    listCatagoryId: v.string(),
+  }),
+  Video: defineTable({
+    listId: v.string(),
+    title: v.string(),  
+    slug: v.string(),
+    isFinished: v.boolean(),
+    youtubeUrl: v.string(),
+    channelId: v.string(),
+    minutes: v.number(),
+    imageUrl: v.string(),
+    listCatagoryId: v.string(),
+  }),
+  Catagory: defineTable({
+    id: v.string(),
+    title: v.string(),
+    icon: v.string(),
+    linkCatagoryI: v.string(),
   })
-    .index("by_user", ["userId"])
-    .index("by_user_parent", ["userId", "parentDocument"])
 });
