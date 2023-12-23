@@ -16,7 +16,7 @@ function CategoryItem({ className, category }: Props) {
         </div>
         <div className="w-full h-wull flex flex-row flex-wrap gap-2 px-2 pb-2">
           {category.subCategories.map((subcategory) => (
-            <SubCategoryItem subCategory={subcategory} />
+            <SubCategoryItem key={subcategory.id} subCategory={subcategory} />
           ))}
         </div>
       </div>
