@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+////
+
+model List {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title        String
+  description  String
+  commentCount Int
+  upCount      Int
+  ownerId      String
+
+  addedUserIds String[]
+
+  subCategoryId String
+  subCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
+
+  videos Video[]
+}
+
+////
+
+model SubCategory {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title    String
+  imageUrl String
+
+  categoryId String
+  Category   Category @relation(fields: [categoryId], references: [id])
+
+  lists List[]
+}
+
+////
+
+model Category {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title String
+  icon  String
+
+  subCategories SubCategory[]
+}
+
+////
+
+model Channel {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title           String
+  description     String
+  imageUrl        String
+  videoCount      Int
+  subscriberCount Int
+  viewCount       Int
+
+  ownerId String
+
+  videos Video[]
+}
+
+////
+
+model Video {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title      String
+  youtubeUrl String
+  imageUrl   String
+  duration   Int
+
+  channelId String
+  channel   Channel @relation(fields: [channelId], references: [id])
+
+  lists List[]
+
+  finishedUserIds String[]
+}

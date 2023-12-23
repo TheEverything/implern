@@ -6,27 +6,23 @@ import VideoImage from "./VideoImage";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { getVideosByListId } from "@/convex/Video";
-import { Id } from "@/convex/_generated/dataModel";
+import { Doc, Id } from "@/convex/_generated/dataModel";
 
 interface Props {
   className?: string;
-  id: Id<"List">;
-  title: string;
-  description: string;
-  ownerName: string;
-  ownerImageUrl: string;
-  upCount: number;
-  commentCount: number;
+  list: Doc<"List">;
   isDashboard: boolean;
 }
-export default function ListCard({ className, id, title, description, ownerName, ownerImageUrl, upCount, commentCount, isDashboard }: Props) {
-  const videos = useQuery(api.Video.getVideosByListId, { listId: id });
+
+function ListCard({ className, list, isDashboard }: Props) {
+  const videos = useQuery(api.Video.getVideosByListId, { listId: list._id });
+
   return (
     <div className={className}>
-      <div className="flex flex-col justify-start items-center bg-white py-1.5 border-b border-[#E7E5E4] rounded ">
+      <div className="flex flex-col justify-start items-center bg-white py-1.5 border-b border-[#E7E5E4] rounded">
         <div className="flex h-auto w-full flex-col justify-start items-start px-4 pt-4 ">
-          <p className="h-auto w-full font-bold font-sans	 ">{title}</p>
-          <p className="h-auto w-full font-thin font-sans	text-xs ">{description}</p>
+          <p className="h-auto w-full font-bold font-sans	 ">{list.title}</p>
+          <p className="h-auto w-full font-thin font-sans	text-xs ">{list.description}</p>
         </div>
         <div className="w-full h-fit flex flex-row justify-start items-start gap-2 p-4 overflow-scroll">
           {videos?.map((video) => (
@@ -43,12 +39,14 @@ export default function ListCard({ className, id, title, description, ownerName,
             <div className="flex flex-row w-fit h-fit justify-center items-center gap-0.5 ">2/5</div>
           </div>
 
-          <div className="flex flex-row justify-between items-center px-4 pb-4 ">
+          {/* <div className="flex flex-row justify-between items-center px-4 pb-4 ">
             {ownerImageUrl && <User />}
             {ownerName}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
   );
 }
+
+export default ListCard;

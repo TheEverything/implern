@@ -7,7 +7,7 @@ import { useQuery } from "convex/react";
 import Navbar from "@/components/Navbar";
 
 function Page() {
-  const dashboardLists = useQuery(api.List.getDashboardLists);
+  const dashBoradLists = useQuery(api.List.getDashboardLists);
 
   return (
     <div>
@@ -15,8 +15,18 @@ function Page() {
         <Navbar />
         <TabsCard />
         <div className="w-full h-fit max-w-xl">
-          {dashboardLists?.map((list) => (
-            <ListCard className="w-full h-fit" list={list} isDashboard={true} />
+          {dashBoradLists?.map((list) => (
+            <ListCard
+              className="w-full h-fit"
+              id={list._id}
+              title={list.title}
+              description={list.description}
+              ownerName={list.ownerName}
+              upCount={list.upCount}
+              commentCount={list.commentCount}
+              ownerImageUrl={list.ownerImageUrl}
+              isDashboard={true}
+            />
           ))}
         </div>
       </div>
