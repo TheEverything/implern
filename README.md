@@ -31,3 +31,4 @@
 - [x] add "postinstall": "prisma generate" to package.json's scripts
 - [x] change datasource db provider to cockroachdb in schema.prisma
 - [x] note: "npx prisma generate" and "npx prisma db push" whenever schemas have changed
+- [ ] note: "npx prisma studio" to manage content
