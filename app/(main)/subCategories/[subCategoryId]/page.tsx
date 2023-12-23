@@ -11,7 +11,8 @@ import { redirect } from "next/navigation";
 async function Page({ params }: { params: { subCategoryId: string } }) {
   //get dashbaord lists
   const listsBySubCategoryId = await db.list.findMany({
-    where: { subCategoryId: { equals: params.subCategoryId } }
+    where: { subCategoryId: { equals: params.subCategoryId } },
+    include: { videos: true }
   });
 
   return (

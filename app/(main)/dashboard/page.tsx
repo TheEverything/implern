@@ -10,7 +10,8 @@ async function Page() {
 
   //get dashbaord lists
   const dashboardLists = await db.list.findMany({
-    where: { addedUserIds: { has: userId } }
+    where: { addedUserIds: { has: userId } },
+    include: { videos: true }
   });
 
   return (
