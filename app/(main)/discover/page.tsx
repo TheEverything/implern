@@ -1,18 +1,15 @@
 import CategoryItem from "@/components/CategoryItem";
 import db from "@/lib/db";
-import { Category } from "@prisma/client";
 
 async function Page() {
-  const allCatagories = await db.category.findMany();
+  const allCatagories = await db.category.findMany({ include: { subCategories: true } });
 
   return (
-    <div className="w-[400px] h-[728px]">
-      <div className="fixed bottom-[127px] top-0 right-0 left-0 flex flex-col justify-start items-center z-1 ">
-        <div>
-          {allCatagories.map((category: Category) => (
-            <CategoryItem className="w-full h-fit" category={category} />
-          ))}
-        </div>
+    <div className="flex flex-col fixed bottom-[81px] left-0 right-0 top-0 justify-start items-center overflow-y-scroll z-1">
+      <div className="w-full h-fit max-w-[600px] flex flex-col gap-3 px-3 pt-3 pb-8">
+        {allCatagories.map((category) => (
+          <CategoryItem key={category.id} className="w-full h-fit" category={category} />
+        ))}
       </div>
     </div>
   );

@@ -2,30 +2,21 @@
 
 import { Compass, LayoutDashboard, User } from "lucide-react";
 import { useRouter } from "next/navigation";
+import AppBarItem from "./AppBarItem";
+import { useState } from "react";
 
 interface Props {
   className: string;
 }
 
 function AppBar({ className }: Props) {
-  const router = useRouter();
-
   return (
     <div className={className}>
-      <div className="flex h-fit gap-1.5 flex-col justify-center items-center bg-white shadow-standart ">
-        <div className="flex h-fit w-[400px] flex-row justify-center items-center ">
-          <div className="w-full h-[81px] flex flex-col justify-center items-center gap-1.5" onClick={() => router.push("/dashboard")}>
-            <LayoutDashboard />
-            <p>Dashboard</p>
-          </div>
-          <div className="w-full h-[81px] flex flex-col justify-center items-center gap-1.5" onClick={() => router.push("/discover")}>
-            <Compass />
-            <p>Discover</p>
-          </div>
-          <div className="w-full h-[81px] flex flex-col justify-center items-center gap-1.5">
-            <User />
-            <p>User</p>
-          </div>
+      <div className="flex h-fit flex-col justify-center items-center bg-white shadow-standart">
+        <div className="flex h-fit w-full max-w-[400px] flex-row justify-center items-center ">
+          <AppBarItem className="w-full h-[81px]" icon={LayoutDashboard} name="Dashboard" href="dashboard" />
+          <AppBarItem className="w-full h-[81px]" icon={Compass} name="Discover" href="discover" />
+          <AppBarItem className="w-full h-[81px]" icon={User} name="Profile" href="" />
         </div>
       </div>
     </div>

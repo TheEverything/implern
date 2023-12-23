@@ -28,7 +28,7 @@ model SubCategory {
   imageUrl String
 
   categoryId String
-  Category   Category @relation(fields: [categoryId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
 
   lists List[]
 
