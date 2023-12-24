@@ -44,7 +44,9 @@ model List {
   description  String
   commentCount Int
   upCount      Int
-  ownerId      String
+
+  ownerProfileId String
+  ownerProfile   Profile @relation(fields: [ownerProfileId], references: [id])
 
   addedUserIds String[]
 
@@ -87,6 +89,20 @@ model Channel {
   youtubeUrl String
 
   videos Video[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+////
+
+model Profile {
+  id       String @id @default(uuid())
+  clerkId  String @unique
+  fullName String
+  imageUrl String
+
+  createdLists List[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

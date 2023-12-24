@@ -7,7 +7,12 @@ async function Page() {
 
   const dashboardLists = await db.list.findMany({
     where: { addedUserIds: { has: userId } },
-    include: { videos: true }
+    include: {
+      ownerProfile: true,
+      videos: {
+        include: { channel: true }
+      }
+    }
   });
 
   return (

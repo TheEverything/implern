@@ -15,8 +15,6 @@ interface Props {
 
 function ListCard({ className, list, isDashboard }: Props) {
   const userId = useUser().user?.id;
-
-  const owner = { firstName: "John", lastName: "Doe", imageUrl: "https://i.pravatar.cc/150?img=4" };
   const router = useRouter();
 
   const finishedVideosCount = list.videos?.filter((video) => video.finishedUserIds.includes(userId!)).length || 0;
@@ -61,8 +59,8 @@ function ListCard({ className, list, isDashboard }: Props) {
             </div>
           )}
           <div className="flex flex-row justify-between items-center px-4 pb-4 gap-1.5">
-            <Image src={owner.imageUrl} alt="image" height={20} width={20} className="rounded-full" />
-            <p className="font-semibold text-stone-600 text-sm ">{owner.firstName + " " + owner.lastName}</p>
+            <Image src={list.ownerProfile.imageUrl} alt="image" height={20} width={20} className="rounded-full" />
+            <p className="font-semibold text-stone-600 text-sm ">{list.ownerProfile.fullName}</p>
           </div>
         </div>
       </div>

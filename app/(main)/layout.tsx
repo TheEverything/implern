@@ -1,6 +1,9 @@
 import AppBar from "@/components/AppBar";
+import initialProfile from "@/lib/initial-profile";
 
-function Layout({ children }: { children: React.ReactNode }) {
+async function Layout({ children }: { children: React.ReactNode }) {
+  const profile = await initialProfile();
+
   return (
     <div className="select-none h-svh">
       {children}

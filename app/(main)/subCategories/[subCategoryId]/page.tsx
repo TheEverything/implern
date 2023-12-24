@@ -8,7 +8,12 @@ async function Page({ params }: { params: { subCategoryId: string } }) {
     where: { id: params.subCategoryId },
     include: {
       category: true,
-      lists: { include: { videos: true } }
+      lists: {
+        include: {
+          videos: { include: { channel: true } },
+          ownerProfile: true
+        }
+      }
     }
   });
 
