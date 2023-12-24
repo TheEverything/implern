@@ -1,15 +1,34 @@
+import { CheckCircle2 } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 interface Props {
   className?: string;
   imageUrl: string;
+  width?: number;
+  height?: number;
 }
 
-function VideoImage({ className, imageUrl }: Props) {
+function VideoImage({ className, imageUrl, width, height }: Props) {
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handleClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setIsSelected(!isSelected);
+  };
+
   return (
     <div className={className}>
-      <div className="w-[80px] h-[47px] rounded-md overflow-hidden">
-        <Image src={imageUrl} alt="Tailwind is ending up" width={80} height={47} />
+      <div onClick={handleClick} className="overflow-hidden group" style={{ height, width }}>
+        {isSelected && <div className="absolute opacity-50 rounded-md bg-black" style={{ height, width }}></div>}
+        {isSelected && (
+          <div className="absolute flex items-center justify-center" style={{ height, width }}>
+            <CheckCircle2 size={24} className="text-white rounded-md overflow-hidden group-hover:opacity-70" />
+          </div>
+        )}
+        <div className="overflow-hidden flex items-center rounded-md" style={{ height, width }}>
+          <Image src={imageUrl} alt="Image" width={width} height={height} />
+        </div>
       </div>
     </div>
   );

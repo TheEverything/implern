@@ -11,6 +11,21 @@ module.exports = {
       }
     },
     extend: {
+      fontSize: {
+        "xs": ["12px", "12px"],
+        "sm": ["14px", "14px"],
+        "base": ["16px", "16px"],
+        "lg": ["18px", "18px"],
+        "xl": ["20px", "20px"],
+        "2xl": ["24px", "24px"],
+        "3xl": ["30px", "30px"],
+        "4xl": ["38px", "38px"],
+        "5xl": ["46px", "46px"],
+        "6xl": ["60px", "60px"],
+        "7xl": ["72px", "72px"],
+        "8xl": ["96px", "96px"],
+        "9xl": ["128px", "128px"]
+      },
       boxShadow: {
         standart: "0 4px 15px 0 rgba(194, 195, 206, 1)"
       },

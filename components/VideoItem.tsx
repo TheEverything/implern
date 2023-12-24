@@ -1,5 +1,6 @@
 import { ExtendedVideo } from "@/types";
 import Image from "next/image";
+import { AspectRatio } from "./ui/aspect-ratio";
 
 interface Props {
   className?: string;
@@ -11,7 +12,11 @@ function VideoItem({ className, video }: Props) {
     <div className={className}>
       <div className="h-fit flex flex-col justify-center items-center gap-2.5 overflow-hidden">
         <div className="w-full h-fit flex flex-row justify-start items-center p-2 bg-white border-b border-b-stone-200">
-          <Image alt={video.title} src={video.imageUrl} height={160} width={92} className="rounded-md" />
+          <div className="w-[190px] flex items-center overflow-hidden rounded-md">
+            <AspectRatio ratio={16 / 9} className="flex items-center">
+              <Image src={video.imageUrl} alt="Image" width={190} height={92} />
+            </AspectRatio>
+          </div>
           <div className="h-full w-full flex flex-col justify-center items-center gap-1 p-2">
             <div className="h-fit w-full flex flex-row items-center justify-start gap-1.5">
               <p className="h-full w-fit font-medium text-stone-900 text-base">{video.title}</p>

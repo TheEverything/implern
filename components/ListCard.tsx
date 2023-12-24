@@ -26,13 +26,13 @@ function ListCard({ className, list, isDashboard }: Props) {
         onClick={() => router.push(`/lists/${list.id}`)}
         className="flex flex-col justify-start items-center bg-white hover:bg-stone-100 cursor-pointer py-1.5 border-b border-[#E7E5E4] rounded"
       >
-        <div className="flex h-fit w-full flex-col justify-start items-start gap-0.5 px-4 pt-4 ">
+        <div className="flex h-fit w-full flex-col justify-start items-start gap-1.5 px-4 pt-4 ">
           <p className="h-fit w-full font-bold text-stone-900 text-base">{list.title}</p>
           <p className="h-fit w-full font-medium text-xs text-stone-500">{list.description}</p>
         </div>
-        <div className="w-full h-fit flex flex-row justify-start items-start gap-2 p-4 overflow-x-scroll scrollbar-hide">
+        <div className="w-full h-fit flex flex-row justify-start items-center gap-2 p-4 overflow-x-scroll scrollbar-hide">
           {list.videos?.map((video) => (
-            <VideoImage key={video.id} className="w-[84px] h-[47px]" imageUrl={video.imageUrl} />
+            <VideoImage key={video.id} width={84} height={47} imageUrl={video.imageUrl} />
           ))}
         </div>
         <div className="flex flex-row w-full h-fit justify-between items-center px-4 pb-4">

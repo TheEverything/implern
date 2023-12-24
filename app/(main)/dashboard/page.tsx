@@ -1,12 +1,12 @@
 import db from "@/lib/db";
 import ListCard from "@/components/ListCard";
-import { auth } from "@clerk/nextjs";
+import currentProfile from "@/lib/current-profile";
 
 async function Page() {
-  const { userId } = auth();
+  const profile = await currentProfile();
 
   const dashboardLists = await db.list.findMany({
-    where: { addedUserIds: { has: userId } },
+    where: { addedUserIds: { has: profile?.id } },
     include: {
       ownerProfile: true,
       videos: {

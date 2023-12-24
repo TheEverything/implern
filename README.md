@@ -7,6 +7,7 @@
 
 - [x] "npx shadcn-ui@latest init" to initialize shadcn
 - [x] html, body, :root { height: 100% } thing at app/globals.css
+- [x] change text lineheights to 1em in tailwind.config.ts -> theme -> extend -> fontSize
 - [x] "npx shadcn-ui@latest add button" to add button
 
 - [x] "npm i @clerk/nextjs"
