@@ -2,7 +2,6 @@
 
 import { ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { title } from "process";
 
 interface Props {
   className?: string;

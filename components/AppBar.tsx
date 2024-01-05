@@ -1,9 +1,7 @@
 "use client";
 
 import { Compass, LayoutDashboard, User } from "lucide-react";
-import { useRouter } from "next/navigation";
 import AppBarItem from "./AppBarItem";
-import { useState } from "react";
 
 interface Props {
   className: string;
