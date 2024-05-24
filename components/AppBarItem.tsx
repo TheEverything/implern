@@ -18,11 +18,9 @@ function AppBarItem({ className, icon: Icon, name, href }: Props) {
   const isActive = pathname === `/${href}`;
 
   return (
-    <div className={className}>
-      <div className="h-full flex flex-col justify-center items-center gap-1.5 cursor-pointer" onClick={() => router.push(`/${href}`)}>
-        <Icon size={20} className={cn("text-stone-400", isActive && "text-stone-800")} />
-        <p className={cn("font-semibold text-stone-400 text-[11px]", isActive && "text-stone-800")}>{name}</p>
-      </div>
+    <div className={cn("h-full flex flex-col justify-center items-center gap-1.5 cursor-pointer", className)} onClick={() => router.push(`/${href}`)}>
+      <Icon size={20} className={cn("text-stone-400", isActive && "text-stone-800")} />
+      <p className={cn("font-semibold text-stone-400 text-[11px]", isActive && "text-stone-800")}>{name}</p>
     </div>
   );
 }
